@@ -34,8 +34,6 @@ func root(w http.ResponseWriter, r *http.Request) {
 	XiaoMiDevice.Mipowerbank10400 = xiaomiSearch("http://www.mi.com/sg/mipowerbank10400/", w, r)
 	XiaoMiDevice.Mipowerbank5200 = xiaomiSearch("http://www.mi.com/sg/mipowerbank5200/", w, r)
 	
-	
-	
 	xiaomiAvailForm.ExecuteTemplate(w, "xiaomiAvail.htm", XiaoMiDevice)
 }
 
@@ -57,7 +55,7 @@ func xiaomiSearch(url string, w http.ResponseWriter, r *http.Request) string {
 	re := regexp.MustCompile("text..Buy now")
 	match := re.MatchString(string(robots))
 	if match {
-		return "Availabile";
+		return url;
 	} else {
 		return "Not Available";
 	}

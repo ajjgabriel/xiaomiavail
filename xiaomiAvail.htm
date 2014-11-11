@@ -9,14 +9,57 @@
     
 <title>XiaoMi Availability Singapore</title>
 
-
-<script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
-
 <link href="images/favicon.ico" rel="icon" type="image/icon" />
-
-
+<script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
 <link href="responsive.min.css" rel="stylesheet" />
+<script>
+// Check the main container is ready
+$('#feed').ready(function(){
+    // Get each div
+    $('.content').each(function(){
+        // Get the content
+        var str = $(this).html();
+        // Set the regex string
+        var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/g
+        // Replace plain text links by hyperlinks
+        var replaced_text = str.replace(regex, "<a href=$1 >Available</a>");
+		$(this).html(replaced_text);
+    });
+	
+	$('.content').each(function(){
+        // Get the content
+        var str = $(this).html();
+        // Set the regex string
+        
+		var regex = /(Not.Available)/g
+        // Replace plain text links by hyperlinks
+        var replaced_text = str.replace(regex, "<span style=color:red>$1</span>");
+        $(this).html(replaced_text);
+    });
+});
+
+</script>
 <style>
+a {
+}
+a:link {
+    color: #00CC66;
+    text-decoration: none;
+}
+ 
+a:active {
+    color: #00CC66;
+    text-decoration: none;
+}
+ 
+a:visited {
+    color: #00CC66;
+    text-decoration: none;
+}
+a:hover {
+    color: #00CC66;
+    text-decoration: none;
+}
 table
 {
     border-spacing:1px;
@@ -82,12 +125,14 @@ tr:last-child td:last-child
 </style>
 </head>
   <body>
-	<div align="center">
-	<!--<img border="0" src="images/logo.png" alt="XiaoMi Availability Singapore"/>-->
-	</p>
-	XiaoMi Availability In Singapore
+	<div id="#feed" align="center">
+	<div class="content">
+	<img border="0" src="images/logo.png" alt="XiaoMi Availability Singapore"/>
 	</p>
 	<table class="rwd-table">
+	  <tr>
+			Singapore
+	  </tr>
 	  <tr>
 		<td>Note 4G:</td>
 		<td>{{.Note4G}}</td> 
@@ -110,7 +155,7 @@ tr:last-child td:last-child
 	  </tr>
 	  
 	</table>
-	
+	</div>
     </div>
   </body>
 </html>
