@@ -16,6 +16,7 @@ type XiaoMiDevice struct {
 		Mi3					string
 		Mipowerbank10400	string
 		Mipowerbank5200		string
+		Miband				string
 }
 
 func init() {
@@ -33,6 +34,7 @@ func root(w http.ResponseWriter, r *http.Request) {
 	XiaoMiDevice.Mi3 = xiaomiSearch("http://www.mi.com/sg/mi3/", w, r)
 	XiaoMiDevice.Mipowerbank10400 = xiaomiSearch("http://www.mi.com/sg/mipowerbank10400/", w, r)
 	XiaoMiDevice.Mipowerbank5200 = xiaomiSearch("http://www.mi.com/sg/mipowerbank5200/", w, r)
+	XiaoMiDevice.Miband = xiaomiSearch("http://www.mi.com/sg/miband/", w, r)
 	
 	xiaomiAvailForm.ExecuteTemplate(w, "xiaomiAvail.htm", XiaoMiDevice)
 }
@@ -52,12 +54,12 @@ func xiaomiSearch(url string, w http.ResponseWriter, r *http.Request) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	re := regexp.MustCompile("text..Buy now")
+	re := regexp.MustCompile("(J-btn.disabled)|(disabled.J-btn)")
 	match := re.MatchString(string(robots))
 	if match {
-		return url;
-	} else {
 		return "Not Available";
+	} else {
+		return url;
 	}
 	
 }
