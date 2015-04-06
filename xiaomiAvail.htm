@@ -1,169 +1,87 @@
-<html>
-<head>
+        <!DOCTYPE html>
 
+        <html lang="en">
+		
+		<link href="images/favicon.ico" rel="icon" type="image/icon" />
+		<script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
+		<script>
+		// Check the main container is ready
+		$('#feed').ready(function(){
+			// Get each div
+			$('.content').each(function(){
+				// Get the content
+				var str = $(this).html();
+				// Set the regex string
+				var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/g
+				// Replace plain text links by hyperlinks
+				var replaced_text = str.replace(regex, "<a href=$1 style=color:#66CC00>Available</a>");
+				$(this).html(replaced_text);
+			});
+			
+			$('.content').each(function(){
+				// Get the content
+				var str = $(this).html();
+				// Set the regex string
+				
+				var regex = /(Not.Available)/g
+				// Replace plain text links by hyperlinks
+				var replaced_text = str.replace(regex, "<span style=color:red>$1</span>");
+				$(this).html(replaced_text);
+			});
+		});
 
-<meta charset="utf-8">
-<meta name="Description" CONTENT="Getting The Correct Time At Different Time Zones">
-<meta name="viewport"
-          content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 1.0, user-scalable = no"/>
-    
-<title>XiaoMi Availability Singapore</title>
+		</script>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>XiaoMi Availability Singapore</title>
 
-<link href="images/favicon.ico" rel="icon" type="image/icon" />
-<script type="text/javascript" language="javascript" src="js/jQuery/jquery-1.11.1.min.js"></script>
-<link href="responsive.min.css" rel="stylesheet" />
-<script>
-// Check the main container is ready
-$('#feed').ready(function(){
-    // Get each div
-    $('.content').each(function(){
-        // Get the content
-        var str = $(this).html();
-        // Set the regex string
-        var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/g
-        // Replace plain text links by hyperlinks
-        var replaced_text = str.replace(regex, "<a href=$1 >Available</a>");
-		$(this).html(replaced_text);
-    });
+            <!-- Bootstrap -->
+            <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+            
+            <!-- Main Style -->
+            <link rel="stylesheet" type="text/css" href="css/main.css">
+
+            <!--Icon Fonts-->
+            <link rel="stylesheet" media="screen" href="fonts/font-awesome/font-awesome.min.css" />
+                        
+          </head>
+
+        <body>
+		
+     	<div id="#feed" >
+		<div class="content">
+        <section id="pricing-table">
+            <div class="container">
+                <div class="row">
+                    <div class="pricing">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="pricing-table">
+                                <div class="pricing-header">
+                                    <p class="pricing-title">Singapore</p>
+                                </div>
+
+                                <div class="pricing-list">
+                                    <ul>
+                                        <li><i class="fa fa-mobile"></i><span>Red Mi 2:</span> {{.Redmi2}}</li>
+                                        <li><i class="fa fa-mobile"></i><span>Note 4G:</span> {{.Note4G}}</li>
+                                        <li><i class="fa fa-tablet"></i><span>Mi Pad:</span> {{.MiPad}}</li>
+										<li><i class="fa fa-mobile"></i><span>Mi Band:</span> {{.Miband}}</li>
+                                        <li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 16000:</span> {{.Mipowerbank16000}}</li>
+										<li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 10400:</span> {{.Mipowerbank10400}}</li>
+										<li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 5000:</span> {{.Mipowerbank5000}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+		</div>
+		</div>
 	
-	$('.content').each(function(){
-        // Get the content
-        var str = $(this).html();
-        // Set the regex string
-        
-		var regex = /(Not.Available)/g
-        // Replace plain text links by hyperlinks
-        var replaced_text = str.replace(regex, "<span style=color:red>$1</span>");
-        $(this).html(replaced_text);
-    });
-});
-
-</script>
-<style>
-a {
-}
-a:link {
-    color: #00CC66;
-    text-decoration: none;
-}
- 
-a:active {
-    color: #00CC66;
-    text-decoration: none;
-}
- 
-a:visited {
-    color: #00CC66;
-    text-decoration: none;
-}
-a:hover {
-    color: #00CC66;
-    text-decoration: none;
-}
-table
-{
-    border-spacing:1px;
-    border-style:solid;
-    border-width:2px;
-    border-color:#000000;
-    font:14px Georgia, serif;
-    padding:0;
-    box-shadow:0px 0px #000000;
-    border-radius:10px;
-}
- 
-th
-{
-    color:#000000;
-    background:#000000;
-    border-style:solid;
-    border-width:1px;
-    border-color:#000000;
-    font-weight:bold;
-    padding:5px;
-    text-align:center;
-    vertical-align:top;
-}
- 
-tr
-{
-    color:#000000;
-    font-weight:normal;
-}
- 
-tr:hover td
-{
-    color:#000000;
-}
- 
-td
-{
-    padding:3px 5px;
-    text-align:left;
-    vertical-align:top;
-}
- 
-th:first-child
-{
-    border-top-left-radius:10px;
-}
- 
-th:last-child
-{
-    border-top-right-radius:10px;
-}
- 
-tr:last-child td:first-child
-{
-    border-bottom-left-radius:10px;
-}
- 
-tr:last-child td:last-child
-{
-    border-bottom-right-radius:10px;
-}
-</style>
-</head>
-  <body>
-	<div id="#feed" align="center">
-	<div class="content">
-	<img border="0" src="images/logo.png" alt="XiaoMi Availability Singapore"/>
-	</p>
-	<table class="rwd-table">
-	  <tr>
-			Singapore
-	  </tr>
-	  <tr>
-		<td>Red Mi 2:</td>
-		<td>{{.Redmi2}}</td> 
-	  </tr>
-	  <tr>
-		<td>Note 4G:</td>
-		<td>{{.Note4G}}</td> 
-	  </tr>
-	  <tr>
-		<td>Mi Pad:</td>
-		<td>{{.MiPad}}</td> 
-	  </tr>
-	  <tr>
-		<td>Mi Band:</td>
-		<td>{{.Miband}}</td> 
-	  </tr>
-	  <tr>
-		<td>Mi Power Bank 16000:</td>
-		<td>{{.Mipowerbank16000}}</td> 
-	  </tr>
-	  <tr>
-		<td>Mi Power Bank 10400:</td>
-		<td>{{.Mipowerbank10400}}</td> 
-	  </tr>
-	  <tr>
-		<td>Mi Power Bank 5200:</td>
-		<td>{{.Mipowerbank5000}}</td> 
-	  </tr>
-	  
-	</table>
-	</div>
-    </div>
-  </body>
-</html>
+        </body>
+        </html>

@@ -1,62 +1,88 @@
-table
-{
-    border-spacing:1px;
-    border-style:solid;
-    border-width:2px;
-    border-color:#2C4F85;
-    font:14px Georgia, serif;
-    padding:0;
-    box-shadow:0px 0px #000000;
-    border-radius:10px;
+/*Font Loded*/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+
+body{
+  background: url(../images/bg.jpg);
 }
- 
-th
-{
-    color:#FFFFFF;
-    background:#2C7EDB;
-    border-style:solid;
-    border-width:1px;
-    border-color:#2C4F85;
-    font-weight:bold;
-    padding:5px;
-    text-align:center;
-    vertical-align:top;
+
+.btn-custom {
+  color: #bdc3c7;
+  font-size: 18px;
+  border: 1px solid #bdc3c7;
 }
- 
-tr
-{
-    color:#5A7ECC;
-    font-weight:normal;
+.btn-custom:hover {
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }
- 
-tr:hover td
-{
-    color:#081C6B;
+#pricing-table {
+  padding-top: 50px;
 }
- 
-td
-{
-    padding:3px 5px;
-    text-align:left;
-    vertical-align:top;
+#pricing-table .pricing {
+  marign: 0;
+  padding: 0;
+  font-family: 'Robot', sans-serif;
 }
- 
-th:first-child
-{
-    border-top-left-radius:10px;
+#pricing-table .pricing .pricing-table {
+  padding-bottom: 30px;
 }
- 
-th:last-child
-{
-    border-top-right-radius:10px;
+#pricing-table .pricing .pricing-table .pricing-header {
+  position: relative;
+  background: #34495e;
+  padding: 22px 22px;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
 }
- 
-tr:last-child td:first-child
-{
-    border-bottom-left-radius:10px;
+#pricing-table .pricing .pricing-table .pricing-header .pricing-title {
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
 }
- 
-tr:last-child td:last-child
-{
-    border-bottom-right-radius:10px;
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate {
+  font-size: 70px;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate sup {
+  font-size: 24px;
+  position: relative;
+  top: -30px;
+  color: #bdc3c7;
+}
+#pricing-table .pricing .pricing-table .pricing-header .pricing-rate span {
+  font-size: 16px;
+  color: #bdc3c7;
+  text-transform: uppercase;
+}
+#pricing-table .pricing .pricing-list {
+  padding: 20px 0 40px 0;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+}
+#pricing-table .pricing .pricing-list ul {
+  padding: 0px;
+  display: table;
+  margin: 0px auto;
+}
+#pricing-table .pricing .pricing-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #EAECEB;
+  color: #bdc3c7;
+  font-size: 16px;
+  line-height: 42px;
+}
+#pricing-table .pricing .pricing-list ul li:last-child {
+  border: none;
+}
+#pricing-table .pricing .pricing-list ul li i {
+  margin-right: 12px;
+  color: #bdc3c7;
+}
+#pricing-table .pricing .pricing-list ul li span {
+  color: #34495e;
 }
