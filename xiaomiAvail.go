@@ -3,11 +3,13 @@ package xiaomiAvail
 import (
     "html/template"
     "net/http"
-	"appengine"
-	"appengine/urlfetch"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/urlfetch"
 	"io/ioutil"
 	"log"
 	"regexp"
+	"sync"
+	"runtime"
 )
 
 type XiaoMiDevice struct {
@@ -28,15 +30,43 @@ func init() {
 
 
 func root(w http.ResponseWriter, r *http.Request) {
+
+	runtime.GOMAXPROCS(7)
+	var wg sync.WaitGroup
+    wg.Add(7)
 	
 	XiaoMiDevice := new(XiaoMiDevice);
-	XiaoMiDevice.Note4G = xiaomiSearch("http://www.mi.com/sg/note4g/", "http://store.mi.com/sg/misc/getStarStock/hdid/note4g?jsonpcallback=jQuery18301541439404245466_1422453874281&_=1422453874342", w, r)
-	XiaoMiDevice.Redmi2 = xiaomiSearch("http://www.mi.com/sg/redmi2/", "http://store.mi.com/sg/misc/getStarStock/hdid/redmi2?jsonpcallback=getStarStock&_=1427960799062", w, r)
-	XiaoMiDevice.MiPad = xiaomiSearch("http://www.mi.com/sg/mipad/", "http://store.mi.com/sg/misc/getStarStock/hdid/mipad?jsonpcallback=getStarStock&_=1427960981544", w, r)
-	XiaoMiDevice.Mipowerbank16000 = xiaomiSearch("http://www.mi.com/sg/mipowerbank16000/", "http://store.mi.com/sg/misc/getStarStock/hdid/power16000?jsonpcallback=jQuery18305076766561251134_1422460817629&_=1422460817709", w, r)
-	XiaoMiDevice.Mipowerbank10400 = xiaomiSearch("http://www.mi.com/sg/mipowerbank10400/", "http://store.mi.com/sg/misc/getStarStock/hdid/power10400?jsonpcallback=jQuery183011226079403422773_1422460580239&_=1422460580339", w, r)
-	XiaoMiDevice.Mipowerbank5000 = xiaomiSearch("http://www.mi.com/sg/mipowerbank5000/", "http://store.mi.com/sg/misc/getStarStock/hdid/power5000?jsonpcallback=getStarStock&_=1427987553449", w, r)
-	XiaoMiDevice.Miband = xiaomiSearch("http://www.mi.com/sg/miband/", "http://store.mi.com/sg/misc/getStarStock/hdid/miband?jsonpcallback=jQuery183004000588273629546_1422460598809&_=1422460599020", w, r)
+	
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Note4G = xiaomiSearch("http://www.mi.com/sg/note4g/", "http://store.mi.com/sg/misc/getStarStock/hdid/note4g?jsonpcallback=jQuery18301541439404245466_1422453874281&_=1422453874342", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Redmi2 = xiaomiSearch("http://www.mi.com/sg/redmi2/", "http://store.mi.com/sg/misc/getStarStock/hdid/redmi2?jsonpcallback=getStarStock&_=1427960799062", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.MiPad = xiaomiSearch("http://www.mi.com/sg/mipad/", "http://store.mi.com/sg/misc/getStarStock/hdid/mipad?jsonpcallback=getStarStock&_=1427960981544", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Mipowerbank16000 = xiaomiSearch("http://www.mi.com/sg/mipowerbank16000/", "http://store.mi.com/sg/misc/getStarStock/hdid/power16000?jsonpcallback=jQuery18305076766561251134_1422460817629&_=1422460817709", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Mipowerbank10400 = xiaomiSearch("http://www.mi.com/sg/mipowerbank10400/", "http://store.mi.com/sg/misc/getStarStock/hdid/power10400?jsonpcallback=jQuery183011226079403422773_1422460580239&_=1422460580339", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Mipowerbank5000 = xiaomiSearch("http://www.mi.com/sg/mipowerbank5000/", "http://store.mi.com/sg/misc/getStarStock/hdid/power5000?jsonpcallback=getStarStock&_=1427987553449", w, r)
+	}()
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Miband = xiaomiSearch("http://www.mi.com/sg/miband/", "http://store.mi.com/sg/misc/getStarStock/hdid/miband?jsonpcallback=jQuery183004000588273629546_1422460598809&_=1422460599020", w, r)
+	}()
+	
+	wg.Wait()
 	
 	xiaomiAvailForm.ExecuteTemplate(w, "xiaomiAvail.htm", XiaoMiDevice)
 }
