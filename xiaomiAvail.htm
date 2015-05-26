@@ -8,6 +8,7 @@
 		
 		<div id="fb-root"></div>
 		<script type="text/javascript" language="javascript" src="js/jQuery/main.js"></script>
+		
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,49 +17,67 @@
             <!-- Bootstrap -->
             <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
             
-            <!-- Main Style -->
-            <link rel="stylesheet" type="text/css" href="css/main.css">
-
-            <!--Icon Fonts-->
-            <link rel="stylesheet" media="screen" href="fonts/font-awesome/font-awesome.min.css" />
-                        
+            <link rel="stylesheet" type="text/css" href="css/flags/flags.css">  
+<style>			
+			body {
+    background-color: #FFF2F2F2;
+}
+</style>	
           </head>
 
         <body>
-		
+		<img src="/images/logo.png"  style="display: block;
+  margin-left: auto;
+  margin-right: auto;"/>
      	<div id="#feed" >
 		<div class="content">
-        <section id="pricing-table">
+        <section id="pricing-table" >
             <div class="container">
-                <div class="row">
-                    <div class="pricing">
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="pricing-table">
-                                <div class="pricing-header">
-                                    <p class="pricing-title">Singapore</p>
-                                </div>
-
-                                <div class="pricing-list">
-                                    <ul>
-                                        <li><i class="fa fa-mobile"></i><span>Red Mi 2:</span> {{.Redmi2}}</li>
-                                        <li><i class="fa fa-mobile"></i><span>Note 4G:</span> {{.Note4G}}</li>
-                                        <li><i class="fa fa-tablet"></i><span>Mi Pad:</span> {{.MiPad}}</li>
-										<li><i class="fa fa-mobile"></i><span>Mi Band:</span> {{.Miband}}</li>
-                                        <li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 16000:</span> {{.Mipowerbank16000}}</li>
-										<li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 10400:</span> {{.Mipowerbank10400}}</li>
-										<li><i class="fa fa-calendar-o"></i><span>Mi Power Bank 5000:</span> {{.Mipowerbank5000}}</li>
-										</br>
-										<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true" ></div>
-                                    </ul>
-									
-                                </div>
-                            </div>
-                        </div>
-
-                       
-                    </div>
-                </div>
-            </div>
+				<h4>Singapore<img class="flag flag-sg"  /></h4>
+                 <table class="table">
+					<thead>
+					  <tr>
+						<th>Device</th>
+						<th>Availability</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td>Red Mi 2</td>
+						<td>{{.Redmi2}}</td>
+					  </tr>
+					  <tr>
+						<td>Red Mi 4i</td>
+						<td>{{.Mi4G}}</td>
+					  </tr>
+					  <tr>
+						<td>Note 4G</td>
+						<td>{{.Note4G}}</td>
+					  </tr>
+					  <tr>
+						<td>Mi Pad</td>
+						<td>{{.MiPad}}</td>
+					  </tr>
+					  <tr>
+						<td>Mi Band</td>
+						<td>{{.Miband}}</td>
+					  </tr>
+					  <tr>
+						<td>Mi Power Bank 16000</td>
+						<td>{{.Mipowerbank16000}}</td>
+					  </tr>
+					  <tr>
+						<td>Mi Power Bank 10400</td>
+						<td>{{.Mipowerbank10400}}</td>
+					  </tr>
+					  <tr>
+						<td>Mi Power Bank 5000</td>
+						<td>{{.Mipowerbank5000}}</td>
+					  </tr>
+					</tbody>
+				  </table>              
+				
+          
         </section>
 		</div>
 		</div>

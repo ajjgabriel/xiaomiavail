@@ -13,6 +13,7 @@ import (
 )
 
 type XiaoMiDevice struct {
+		Mi4G				string
 		Note4G				string
 		Redmi2				string
 		MiPad				string
@@ -31,12 +32,16 @@ func init() {
 
 func root(w http.ResponseWriter, r *http.Request) {
 
-	runtime.GOMAXPROCS(7)
+	runtime.GOMAXPROCS(8)
 	var wg sync.WaitGroup
-    wg.Add(7)
+    wg.Add(8)
 	
 	XiaoMiDevice := new(XiaoMiDevice);
 	
+	go func() {
+		defer wg.Done()
+		XiaoMiDevice.Mi4G = xiaomiSearch("http://www.mi.com/sg/mi4i/", "http://store.mi.com/sg/misc/getStarStock/hdid/mi4i?jsonpcallback=getStarStock&_=1432649153973", w, r)
+	}()
 	go func() {
 		defer wg.Done()
 		XiaoMiDevice.Note4G = xiaomiSearch("http://www.mi.com/sg/note4g/", "http://store.mi.com/sg/misc/getStarStock/hdid/note4g?jsonpcallback=jQuery18301541439404245466_1422453874281&_=1422453874342", w, r)
@@ -86,7 +91,7 @@ func xiaomiSearch(url string,jQueryUrl string, w http.ResponseWriter, r *http.Re
 	if err != nil {
 		log.Fatal(err)
 	}
-	re,_ := regexp.Compile("has_packet..false")
+	re,_ := regexp.Compile("is_cos..false")
 	match := re.Match(robots)
 	if match {
 		return url;
